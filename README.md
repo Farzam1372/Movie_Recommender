@@ -1,31 +1,52 @@
-📂 Movie-Recommender  
-│── data
-│── notebooks  
-│── src
-│   ├── models  
-│   ├── utils  
-│   ├── app.py  # Flask API  
-│── frontend  
-│── requirements.txt  
-│── Dockerfile  
-│── README.md  
+# 🎬 Movie Recommender System
 
-# 1. Data Collection
-project/
-├── data/
-├── src/
-│   ├── data_loader.py   👈 ← Here goes the `load_data()` function
-├── notebooks/
-│   ├── 1_EDA.ipynb
-│   ├── 2_Modeling.ipynb
+This project implements a **Hybrid Movie Recommender System** using both **Content-Based Filtering** and **Collaborative Filtering**. Built with **pure Python, NumPy, and Scikit-Learn**, and deployed with **Streamlit**, this app suggests movies tailored to a user's preferences.
 
+## 💡 Features
 
-This dataset (ml-latest-small) describes 5-star rating and free-text tagging activity from MovieLens, a movie recommendation service. It contains 100836 ratings and 3683 tag applications across 9742 movies. These data were created by 610 users between March 29, 1996 and September 24, 2018. This dataset was generated on September 26, 2018.
+- ✅ Content-Based Filtering using TF-IDF and Cosine Similarity
+- ✅ Collaborative Filtering using Singular Value Decomposition (SVD)
+- ✅ Hybrid approach combining both methods
+- ✅ Interactive Web App with Streamlit
+- ✅ Pure Python implementation (no high-level libraries like `surprise`)
+- ✅ Reproducible pipeline from data to deployment
 
-Users were selected at random for inclusion. All selected users had rated at least 20 movies. No demographic information is included. Each user is represented by an id, and no other information is provided.
+---
 
-The data are contained in the files links.csv, movies.csv, ratings.csv and tags.csv. More details about the contents and use of all these files follows.
+## 📁 Dataset
 
-This is a development dataset. As such, it may change over time and is not an appropriate dataset for shared research results. See available benchmark datasets if that is your intent.
+- **Source**: [MovieLens 100K (ml-latest-small)](https://grouplens.org/datasets/movielens/)
+- Contains:
+  - 100,000+ ratings from 600 users on 9,000+ movies
+  - Metadata: Titles, Genres, Tags, IMDb & TMDB links
 
-This and other GroupLens data sets are publicly available for download at http://grouplens.org/datasets/.
+---
+
+## 🚀 How It Works
+
+### 📊 1. Data Processing
+- Load `ratings.csv`, `movies.csv`, and `tags.csv`
+- Merge data for unified access
+- One-hot encode genres
+- Apply TF-IDF on movie titles or tags
+
+### 🧠 2. Model Building
+
+#### Content-Based Filtering
+- TF-IDF vectors → Cosine similarity
+- Recommend similar movies based on content
+
+#### Collaborative Filtering
+- Build user-item rating matrix
+- Apply SVD with NumPy to learn latent features
+- Predict unseen user ratings
+
+#### Hybrid Model
+- Combine both systems via weighted average
+- Tunable `alpha` parameter controls influence of each model
+
+### 🌐 3. Web App (in Progress)
+- Built using Streamlit
+- Allows user selection, model tuning, and recommendation display
+
+---
